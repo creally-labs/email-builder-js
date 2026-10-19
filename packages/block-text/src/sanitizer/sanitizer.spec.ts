@@ -46,9 +46,13 @@ function expectSameAsInsane(insane: Insane, codec: EntityCodec, html: string) {
 }
 
 function time(fn: () => void): number {
-  const start = performance.now();
-  fn();
-  return performance.now() - start;
+  let best = Infinity;
+  for (let i = 0; i < 3; i++) {
+    const start = performance.now();
+    fn();
+    best = Math.min(best, performance.now() - start);
+  }
+  return best;
 }
 
 function createRandom(seed: number) {
