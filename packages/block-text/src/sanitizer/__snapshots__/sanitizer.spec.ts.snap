@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vendored sanitizer output is identical to insane@2.6.2 keeps rendered markdown stable 1`] = `
+[
+  "",
+  "<p>Hello world</p>
+",
+  "<h1>Heading</h1>
+<p>Paragraph with <strong>bold</strong>, <em>italic</em>, <del>strike</del> and <code>code</code>.</p>
+",
+  "<p>Line one<br/>Line two</p>
+<p>New paragraph</p>
+",
+  "<ul>
+<li>One</li>
+<li>Two<ul>
+<li>Nested</li>
+</ul>
+</li>
+<li>Three</li>
+</ul>
+",
+  "<ol>
+<li>First</li>
+<li>Second</li>
+<li>Third</li>
+</ol>
+",
+  "<ol start="5">
+<li>Starts at five</li>
+<li>Six</li>
+</ol>
+",
+  "<blockquote>
+<p>A quote<br/>spanning lines</p>
+</blockquote>
+",
+  "<pre><code>const a = 1 &lt; 2 &amp;&amp; 3 &gt; 2;
+</code></pre>
+",
+  "<table width="100%">
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="right">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">a</td>
+<td align="right">1</td>
+</tr>
+<tr>
+<td align="left">b</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>",
+  "<p>Visit <a href="https://example.com/path?a=1&#x26;b=2" title="Title &#x26; more" target="_blank">our site</a> today.</p>
+",
+  "<p>Mail <a href="mailto:hello@example.com" target="_blank">us</a> or call <a target="_blank">phone</a></p>
+",
+  "<p><a href="/pricing" target="_blank">relative</a> <a href="#top" target="_blank">anchor</a> <a href="?ref=mail" target="_blank">query</a> <a href="{{unsubscribe_url}}" target="_blank">placeholder</a></p>
+",
+  "<p>Hi {{name}}, your code is <strong>{{code}}</strong>.</p>
+",
+  "<p><img src="https://example.com/logo.png" alt="Logo" title="Logo"/></p>
+",
+  "<p><img src="https://example.com/a.png" alt=""/> <img src="https://example.com/b.png" width="100" height="20" alt="B"/></p>
+",
+  "<p>Raw <span style="color: red">span</span> and <b>bold</b></p>
+",
+  "<div><p>Centered?</p></div>",
+  "<table><tr><td align="right" width="50%">cell</td></tr></table>",
+  "<details><summary>More</summary>Hidden text</details>",
+  "<p>Unicode: Привет, мир! 😀 — “quotes” ‘single’ © ® ™ € £</p>
+",
+  "<p><a href="https://example.com/&#x43F;&#x443;&#x442;&#x44C;?q=&#x442;&#x435;&#x441;&#x442;" title="&#x417;&#x430;&#x433;&#x43E;&#x43B;&#x43E;&#x432;&#x43E;&#x43A;" target="_blank">Привет</a></p>
+",
+  "<p>Entities: &amp; &lt; &gt; &quot; &#39; &nbsp; &copy; &#169; &#xA9;</p>
+",
+  "<p><a href="https://example.com/?a=1&#x26;b=2&#x26;c=3">amp link</a></p>
+",
+  "<p><a>entity js</a></p>
+",
+  "<p><a>tab js</a></p>
+",
+  "<p><a href="http://example.com" target="_self">target</a></p>
+",
+  "<p>Footnote-ish[^1] and HTML comment  here</p>
+",
+  "<hr/>
+<hr/>
+<hr/>
+",
+  "<p>Trailing spaces for break<br/>next line</p>
+",
+  "<p>A  B  C  D</p>
+",
+  "<p>attrs</p>",
+  "<p><img/> <img/></p>
+",
+  "<ul><li>Upper</li></ul>",
+  "<p><a href="https://example.com/unquoted">unquoted</a></p>
+",
+  "<p><a href="https://example.com/single">single</a></p>
+",
+  "<p><br/><br/><hr/></p>
+",
+  "<p><b>unclosed <i>nested</i></b></p>
+",
+  "<p> stray close</p>
+",
+  "<p></p>
+",
+  "<p title="a &#x3E; b">gt in attr</p>",
+]
+`;

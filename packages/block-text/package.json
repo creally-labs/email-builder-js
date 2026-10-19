@@ -12,8 +12,12 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "browser": {
+    "he": "./she.mjs"
+  },
   "files": [
-    "dist"
+    "dist",
+    "she.mjs"
   ],
   "scripts": {
     "build": "tsup ./src/index.tsx --outDir dist --format cjs,esm --dts"
@@ -26,10 +30,12 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
-    "@types/insane": "^1.0.0"
+    "@types/he": "^1.2.3",
+    "@types/insane": "^1.0.0",
+    "insane": "2.6.2"
   },
   "dependencies": {
-    "insane": "^2.6.2",
+    "he": "^1.2.0",
     "marked": "^12.0.2"
   }
 }

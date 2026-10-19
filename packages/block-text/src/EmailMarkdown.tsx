@@ -1,8 +1,9 @@
-import insane, { AllowedTags } from 'insane';
 import { marked, Renderer } from 'marked';
 import React, { CSSProperties, useMemo } from 'react';
 
-const ALLOWED_TAGS: AllowedTags[] = [
+import sanitize, { SanitizerOptions } from './sanitizer';
+
+const ALLOWED_TAGS: string[] = [
   'a',
   'article',
   'b',
@@ -47,33 +48,35 @@ const ALLOWED_TAGS: AllowedTags[] = [
 ];
 const GENERIC_ALLOWED_ATTRIBUTES = ['style', 'title'];
 
+export const SANITIZER_OPTIONS: SanitizerOptions = {
+  allowedTags: ALLOWED_TAGS,
+  allowedSchemes: ['http', 'https', 'mailto'],
+  allowedAttributes: {
+    ...ALLOWED_TAGS.reduce<Record<string, string[]>>((res, tag) => {
+      res[tag] = [...GENERIC_ALLOWED_ATTRIBUTES];
+      return res;
+    }, {}),
+    img: ['src', 'alt', 'width', 'height', ...GENERIC_ALLOWED_ATTRIBUTES],
+    table: ['width', ...GENERIC_ALLOWED_ATTRIBUTES],
+    td: ['align', 'width', ...GENERIC_ALLOWED_ATTRIBUTES],
+    th: ['align', 'width', ...GENERIC_ALLOWED_ATTRIBUTES],
+    a: ['href', 'target', ...GENERIC_ALLOWED_ATTRIBUTES],
+    ol: ['start', ...GENERIC_ALLOWED_ATTRIBUTES],
+    ul: ['start', ...GENERIC_ALLOWED_ATTRIBUTES],
+  },
+  filter: (token) => {
+    if (token.tag === 'a' && 'href' in token.attrs && token.attrs.href === undefined) {
+      token.attrs.href = '';
+    }
+    if (token.tag === 'img' && 'src' in token.attrs && token.attrs.src === undefined) {
+      token.attrs.src = '';
+    }
+    return true;
+  },
+};
+
 function sanitizer(html: string): string {
-  return insane(html, {
-    allowedTags: ALLOWED_TAGS,
-    allowedSchemes: ['http', 'https', 'mailto'],
-    allowedAttributes: {
-      ...ALLOWED_TAGS.reduce<Record<string, string[]>>((res, tag) => {
-        res[tag] = [...GENERIC_ALLOWED_ATTRIBUTES];
-        return res;
-      }, {}),
-      img: ['src', 'alt', 'width', 'height', ...GENERIC_ALLOWED_ATTRIBUTES],
-      table: ['width', ...GENERIC_ALLOWED_ATTRIBUTES],
-      td: ['align', 'width', ...GENERIC_ALLOWED_ATTRIBUTES],
-      th: ['align', 'width', ...GENERIC_ALLOWED_ATTRIBUTES],
-      a: ['href', 'target', ...GENERIC_ALLOWED_ATTRIBUTES],
-      ol: ['start', ...GENERIC_ALLOWED_ATTRIBUTES],
-      ul: ['start', ...GENERIC_ALLOWED_ATTRIBUTES],
-    },
-    filter: (token) => {
-      if (token.tag === 'a' && 'href' in token.attrs && token.attrs.href === undefined) {
-        token.attrs.href = '';
-      }
-      if (token.tag === 'img' && 'src' in token.attrs && token.attrs.src === undefined) {
-        token.attrs.src = '';
-      }
-      return true;
-    },
-  });
+  return sanitize(html, SANITIZER_OPTIONS);
 }
 
 class CustomRenderer extends Renderer {
@@ -94,7 +97,7 @@ ${body}</tbody>
   }
 }
 
-function renderMarkdownString(str: string): string {
+export function renderMarkdownString(str: string): string {
   const html = marked.parse(str, {
     async: false,
     breaks: true,
