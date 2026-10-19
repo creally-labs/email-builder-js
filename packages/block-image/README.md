@@ -1,3 +1,3 @@
-# @usewaypoint/block-image
+# @creally-labs/block-image
 
 Image component for use with the EmailBuilder package.

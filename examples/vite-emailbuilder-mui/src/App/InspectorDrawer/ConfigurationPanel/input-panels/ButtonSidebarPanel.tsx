@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ZodError } from 'zod';
 
+import { ButtonProps, ButtonPropsDefaults, ButtonPropsSchema } from '@creally-labs/block-button';
 import { ToggleButton } from '@mui/material';
-import { ButtonProps, ButtonPropsDefaults, ButtonPropsSchema } from '@usewaypoint/block-button';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import ColorInput from './helpers/inputs/ColorInput';

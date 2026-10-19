@@ -1,5 +1,5 @@
 {
-  "name": "@usewaypoint/email-builder-project",
+  "name": "@creally-labs/email-builder-project",
   "target": "ES2022",
   "files": [
     "dist"

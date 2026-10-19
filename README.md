@@ -7,6 +7,8 @@
   </p>
 </div>
 
+> **creally-labs fork.** This is a security-patched fork of [usewaypoint/email-builder-js](https://github.com/usewaypoint/email-builder-js) published to GitHub Packages under the `@creally-labs` scope (`@creally-labs/email-builder`, `@creally-labs/block-*`, `@creally-labs/document-core`). See [Fork changes](#fork-changes) below.
+
 ## Introduction
 
 EmailBuilder.js is a free and open-source email template builder for developers. Build emails faster than ever with clean JSON or HTML output that render well across clients and devices.
@@ -238,3 +240,29 @@ EmailBuilder.js is the community version of our much-loved no-code template buil
 ## Looking for something special?
 
 Need special consultation, a one-off feature, integration, or something else for your business? We can help or put you in touch with someone that can – contact us at support@usewaypoint.com and share your details.
+
+## Fork changes
+
+Versions follow `<upstream version + 1 patch>-creally.<n>` (e.g. `@creally-labs/email-builder@0.0.10-creally.1` is upstream `0.0.9` plus the fixes below). Rendered output is unchanged for normal input.
+
+- **block-text** – the unmaintained `insane` sanitizer (ReDoS, [GHSA-w455-mfq9-hf74](https://github.com/advisories/GHSA-w455-mfq9-hf74) / CVE-2020-26303) is replaced by a vendored port with linear-time tag scanners (`src/sanitizer`). Options, whitelist and output are identical to `insane@2.6.2`, including the `he` (Node) / `she.js` (browser, via the `browser` field) entity codec split. A valueless `class` attribute no longer throws.
+- **block-button / block-image / block-avatar** – URLs are checked before they reach `href`/`src` ([upstream #200](https://github.com/usewaypoint/email-builder-js/issues/200)). Links allow `http`, `https`, `mailto`, `tel`; images allow `http`, `https`, `cid` and raster `data:image/*`. Relative URLs, `#anchors`, `?query`, `//host` and template placeholders such as `{{unsubscribe_url}}` are kept as-is. Anything else (`javascript:`, `vbscript:`, `data:text/html`, …, including tab/newline/leading-control obfuscation) renders as an empty `href`/`src` (Image: the link wrapper is dropped).
+- **block-html** – unchanged and **raw by design**: `props.contents` is inserted with `dangerouslySetInnerHTML`. Only let trusted authors edit HTML blocks.
+- Markdown in **block-text** still allows a `style` attribute on whitelisted tags (as upstream).
+
+### Installing from GitHub Packages
+
+```ini
+# .npmrc
+@creally-labs:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+`NODE_AUTH_TOKEN` must be a token with `read:packages` (a classic PAT, or `GITHUB_TOKEN` in GitHub Actions of a repository that has been granted access to the package).
+
+### Publishing
+
+```sh
+npm ci && npm run build --workspaces && npx jest
+npm publish --workspace packages/<name> --tag latest   # needs a token with write:packages
+```

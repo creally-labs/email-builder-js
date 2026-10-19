@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ZodError } from 'zod';
 
+import { AvatarProps, AvatarPropsDefaults, AvatarPropsSchema } from '@creally-labs/block-avatar';
 import { AspectRatioOutlined } from '@mui/icons-material';
 import { ToggleButton } from '@mui/material';
-import { AvatarProps, AvatarPropsDefaults, AvatarPropsSchema } from '@usewaypoint/block-avatar';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import RadioGroupInput from './helpers/inputs/RadioGroupInput';

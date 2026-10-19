@@ -1,3 +1,3 @@
-# @usewaypoint/block-button
+# @creally-labs/block-button
 
 Button component for use with the EmailBuilder package.

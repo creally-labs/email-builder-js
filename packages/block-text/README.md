@@ -1,3 +1,3 @@
-# @usewaypoint/block-text
+# @creally-labs/block-text
 
 Text component for use with the EmailBuilder package.

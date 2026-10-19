@@ -1,6 +1,6 @@
 {
-  "name": "@usewaypoint/block-text",
-  "version": "0.0.7",
+  "name": "@creally-labs/block-text",
+  "version": "0.0.8-creally.1",
   "description": "@usewaypoint/document compatible Text component",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -23,6 +23,14 @@
     "build": "tsup ./src/index.tsx --outDir dist --format cjs,esm --dts"
   },
   "author": "carlos@usewaypoint.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creally-labs/email-builder-js.git",
+    "directory": "packages/block-text"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": "^16 || ^17 || ^18",
