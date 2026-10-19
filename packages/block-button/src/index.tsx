@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
 import { z } from 'zod';
 
+import { LINK_SCHEMES, sanitizeUrl } from './sanitizeUrl';
+
 const FONT_FAMILY_SCHEMA = z
   .enum([
     'MODERN_SANS',
@@ -128,7 +130,7 @@ export const ButtonPropsDefaults = {
 
 export function Button({ style, props }: ButtonProps) {
   const text = props?.text ?? ButtonPropsDefaults.text;
-  const url = props?.url ?? ButtonPropsDefaults.url;
+  const url = sanitizeUrl(props?.url ?? ButtonPropsDefaults.url, LINK_SCHEMES) ?? ButtonPropsDefaults.url;
   const fullWidth = props?.fullWidth ?? ButtonPropsDefaults.fullWidth;
   const buttonTextColor = props?.buttonTextColor ?? ButtonPropsDefaults.buttonTextColor;
   const buttonBackgroundColor = props?.buttonBackgroundColor ?? ButtonPropsDefaults.buttonBackgroundColor;

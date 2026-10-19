@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
 import { z } from 'zod';
 
+import { IMAGE_SCHEMES, sanitizeUrl } from './sanitizeUrl';
+
 const PADDING_SCHEMA = z
   .object({
     top: z.number(),
@@ -56,7 +58,8 @@ export const AvatarPropsDefaults = {
 
 export function Avatar({ style, props }: AvatarProps) {
   const size = props?.size ?? AvatarPropsDefaults.size;
-  const imageUrl = props?.imageUrl ?? AvatarPropsDefaults.imageUrl;
+  const imageUrl =
+    sanitizeUrl(props?.imageUrl ?? AvatarPropsDefaults.imageUrl, IMAGE_SCHEMES, true) ?? AvatarPropsDefaults.imageUrl;
   const alt = props?.alt ?? AvatarPropsDefaults.alt;
   const shape = props?.shape ?? AvatarPropsDefaults.shape;
 

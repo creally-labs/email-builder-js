@@ -1,6 +1,8 @@
 import React, { CSSProperties } from 'react';
 import { z } from 'zod';
 
+import { IMAGE_SCHEMES, LINK_SCHEMES, sanitizeUrl } from './sanitizeUrl';
+
 const PADDING_SCHEMA = z
   .object({
     top: z.number(),
@@ -49,14 +51,14 @@ export function Image({ style, props }: ImageProps) {
     textAlign: style?.textAlign ?? undefined,
   };
 
-  const linkHref = props?.linkHref ?? null;
+  const linkHref = props?.linkHref ? sanitizeUrl(props.linkHref, LINK_SCHEMES) : null;
   const width = props?.width ?? undefined;
   const height = props?.height ?? undefined;
 
   const imageElement = (
     <img
       alt={props?.alt ?? ''}
-      src={props?.url ?? ''}
+      src={sanitizeUrl(props?.url ?? '', IMAGE_SCHEMES, true) ?? ''}
       width={width}
       height={height}
       style={{
