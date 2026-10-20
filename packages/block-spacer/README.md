@@ -1,3 +1,3 @@
-# @creally-labs/block-spacer
+# @usewaypoint/block-spacer
 
 Spacer component for use with the EmailBuilder package.

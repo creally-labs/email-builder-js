@@ -25,7 +25,8 @@
     "directory": "packages/block-image"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "license": "MIT",
   "peerDependencies": {

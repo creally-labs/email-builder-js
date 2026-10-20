@@ -3,17 +3,17 @@ import { z } from 'zod';
 
 import { Avatar, AvatarPropsSchema } from '@creally-labs/block-avatar';
 import { Button, ButtonPropsSchema } from '@creally-labs/block-button';
-import { Divider, DividerPropsSchema } from '@creally-labs/block-divider';
-import { Heading, HeadingPropsSchema } from '@creally-labs/block-heading';
-import { Html, HtmlPropsSchema } from '@creally-labs/block-html';
 import { Image, ImagePropsSchema } from '@creally-labs/block-image';
-import { Spacer, SpacerPropsSchema } from '@creally-labs/block-spacer';
 import { Text, TextPropsSchema } from '@creally-labs/block-text';
+import { Divider, DividerPropsSchema } from '@usewaypoint/block-divider';
+import { Heading, HeadingPropsSchema } from '@usewaypoint/block-heading';
+import { Html, HtmlPropsSchema } from '@usewaypoint/block-html';
+import { Spacer, SpacerPropsSchema } from '@usewaypoint/block-spacer';
 import {
   buildBlockComponent,
   buildBlockConfigurationDictionary,
   buildBlockConfigurationSchema,
-} from '@creally-labs/document-core';
+} from '@usewaypoint/document-core';
 
 import ColumnsContainerPropsSchema from '../blocks/ColumnsContainer/ColumnsContainerPropsSchema';
 import ColumnsContainerReader from '../blocks/ColumnsContainer/ColumnsContainerReader';

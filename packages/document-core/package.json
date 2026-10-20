@@ -1,6 +1,6 @@
 {
-  "name": "@creally-labs/document-core",
-  "version": "0.0.7-creally.1",
+  "name": "@usewaypoint/document-core",
+  "version": "0.0.6",
   "description": "Tools to render waypoint-style documents (core package)",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -19,14 +19,6 @@
     "build": "tsup ./src/index.ts --outDir dist --format cjs,esm --dts"
   },
   "author": "carlos@usewaypoint.com",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/creally-labs/email-builder-js.git",
-    "directory": "packages/document-core"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "license": "MIT",
   "peerDependencies": {
     "react": "^16 || ^17 || ^18",

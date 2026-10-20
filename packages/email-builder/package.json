@@ -25,7 +25,8 @@
     "directory": "packages/email-builder"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -36,14 +37,14 @@
   "dependencies": {
     "@creally-labs/block-avatar": "^0.0.4-creally.1",
     "@creally-labs/block-button": "^0.0.4-creally.1",
-    "@creally-labs/block-columns-container": "^0.0.4-creally.1",
-    "@creally-labs/block-container": "^0.0.3-creally.1",
-    "@creally-labs/block-divider": "^0.0.5-creally.1",
-    "@creally-labs/block-heading": "^0.0.4-creally.1",
-    "@creally-labs/block-html": "^0.0.4-creally.1",
     "@creally-labs/block-image": "^0.0.6-creally.1",
-    "@creally-labs/block-spacer": "^0.0.4-creally.1",
     "@creally-labs/block-text": "^0.0.8-creally.1",
-    "@creally-labs/document-core": "^0.0.7-creally.1"
+    "@usewaypoint/block-columns-container": "^0.0.3",
+    "@usewaypoint/block-container": "^0.0.2",
+    "@usewaypoint/block-divider": "^0.0.4",
+    "@usewaypoint/block-heading": "^0.0.3",
+    "@usewaypoint/block-html": "^0.0.3",
+    "@usewaypoint/block-spacer": "^0.0.3",
+    "@usewaypoint/document-core": "^0.0.6"
   }
 }

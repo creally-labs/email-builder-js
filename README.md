@@ -7,7 +7,7 @@
   </p>
 </div>
 
-> **creally-labs fork.** This is a security-patched fork of [usewaypoint/email-builder-js](https://github.com/usewaypoint/email-builder-js) published to GitHub Packages under the `@creally-labs` scope (`@creally-labs/email-builder`, `@creally-labs/block-*`, `@creally-labs/document-core`). See [Fork changes](#fork-changes) below.
+> **creally-labs fork.** This is a security-patched fork of [usewaypoint/email-builder-js](https://github.com/usewaypoint/email-builder-js) published to npm under the `@creally-labs` scope: `@creally-labs/email-builder`, `@creally-labs/block-text`, `@creally-labs/block-button`, `@creally-labs/block-image` and `@creally-labs/block-avatar`. The other blocks and `document-core` are unchanged and come from `@usewaypoint/*`. See [Fork changes](#fork-changes) below.
 
 ## Introduction
 
@@ -250,19 +250,15 @@ Versions follow `<upstream version + 1 patch>-creally.<n>` (e.g. `@creally-labs/
 - **block-html** – unchanged and **raw by design**: `props.contents` is inserted with `dangerouslySetInnerHTML`. Only let trusted authors edit HTML blocks.
 - Markdown in **block-text** still allows a `style` attribute on whitelisted tags (as upstream).
 
-### Installing from GitHub Packages
+### Installing
 
-```ini
-# .npmrc
-@creally-labs:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```sh
+npm install @creally-labs/email-builder
 ```
-
-`NODE_AUTH_TOKEN` must be a token with `read:packages` (a classic PAT, or `GITHUB_TOKEN` in GitHub Actions of a repository that has been granted access to the package).
 
 ### Publishing
 
 ```sh
 npm ci && npm run build --workspaces && npx jest
-npm publish --workspace packages/<name> --tag latest   # needs a token with write:packages
+npm publish --workspace packages/<name> --tag latest
 ```

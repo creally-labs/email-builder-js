@@ -1,4 +1,4 @@
-# @creally-labs/document-core
+# @usewaypoint/document-core
 
 This is the core library used to build the email messages at [Waypoint](https://www.usewaypoint.com). It is non-opinionated and light on dependencies so that it can be used to compose complex documents.
 
@@ -11,7 +11,7 @@ This is the core library used to build the email messages at [Waypoint](https://
 **Installation with npm**
 
 ```
-npm install --save @creally-labs/document-core
+npm install --save @usewaypoint/document-core
 ```
 
 ## Usage
