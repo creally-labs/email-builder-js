@@ -1,0 +1,9 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboardApproval", "abandonments:recommended"],
+  "dependencyDashboardTitle": "Dependency Dashboard",
+  "vulnerabilityAlerts": {
+    "enabled": false
+  },
+  "minimumReleaseAge": "3 days"
+}
