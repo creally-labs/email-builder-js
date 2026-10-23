@@ -1,0 +1,19 @@
+version: 2
+
+# Version updates are off; the entries only shape the security-update PRs, which open as soon as an alert does.
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 0
+    commit-message:
+      prefix: fix(deps)
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 0
+    commit-message:
+      prefix: fix(deps)
