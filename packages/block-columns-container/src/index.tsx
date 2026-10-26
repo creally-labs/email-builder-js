@@ -47,7 +47,7 @@ export const ColumnsContainerPropsSchema = z.object({
     .nullable(),
 });
 
-type TColumn = JSX.Element | JSX.Element[] | null;
+type TColumn = React.JSX.Element | React.JSX.Element[] | null;
 export type ColumnsContainerProps = z.infer<typeof ColumnsContainerPropsSchema> & {
   columns?: TColumn[];
 };

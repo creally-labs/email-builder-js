@@ -6,7 +6,7 @@ import RawSliderInput from './raw/RawSliderInput';
 
 type SliderInputProps = {
   label: string;
-  iconLabel: JSX.Element;
+  iconLabel: React.JSX.Element;
 
   step?: number;
   marks?: boolean;

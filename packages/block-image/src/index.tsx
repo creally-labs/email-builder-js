@@ -58,7 +58,7 @@ export function Image({ style, props }: ImageProps) {
   const imageElement = (
     <img
       alt={props?.alt ?? ''}
-      src={sanitizeUrl(props?.url ?? '', IMAGE_SCHEMES, true) ?? ''}
+      src={sanitizeUrl(props?.url ?? '', IMAGE_SCHEMES, true) || undefined}
       width={width}
       height={height}
       style={{

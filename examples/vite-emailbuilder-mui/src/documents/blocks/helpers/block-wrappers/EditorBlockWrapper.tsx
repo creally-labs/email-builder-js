@@ -8,7 +8,7 @@ import { setSelectedBlockId, useSelectedBlockId } from '../../../editor/EditorCo
 import TuneMenu from './TuneMenu';
 
 type TEditorBlockWrapperProps = {
-  children: JSX.Element;
+  children: React.JSX.Element;
 };
 
 export default function EditorBlockWrapper({ children }: TEditorBlockWrapperProps) {

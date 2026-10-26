@@ -9,14 +9,16 @@ import { BaseZodDictionary, BlockConfiguration, DocumentBlocksDictionary } from 
  */
 export default function buildBlockConfigurationSchema<T extends BaseZodDictionary>(
   blocks: DocumentBlocksDictionary<T>
-) {
-  const blockObjects = Object.keys(blocks).map((type: keyof T) =>
+): z.ZodType<BlockConfiguration<T>> {
+  const blockObjects = (Object.keys(blocks) as Array<keyof T & string>).map((type) =>
     z.object({
       type: z.literal(type),
       data: blocks[type].schema,
     })
   );
+  type TBlockObject = (typeof blockObjects)[number];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return z.discriminatedUnion('type', blockObjects as any).transform((v) => v as BlockConfiguration<T>);
+  return z
+    .discriminatedUnion('type', blockObjects as [TBlockObject, ...TBlockObject[]])
+    .transform((v) => v as BlockConfiguration<T>);
 }

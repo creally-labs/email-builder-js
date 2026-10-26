@@ -30,7 +30,7 @@ describe('block-image url sanitization', () => {
     'drops unsafe image src %j',
     (url) => {
       const html = renderToStaticMarkup(<Image props={{ url }} />);
-      expect(html).toContain('src=""');
+      expect(html).not.toContain(' src=');
     }
   );
 
