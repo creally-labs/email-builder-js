@@ -9,7 +9,7 @@ import { BaseZodDictionary, BlockConfiguration, DocumentBlocksDictionary } from 
  */
 export default function buildBlockConfigurationSchema<T extends BaseZodDictionary>(
   blocks: DocumentBlocksDictionary<T>
-) {
+): z.ZodType<BlockConfiguration<T>> {
   const blockObjects = (Object.keys(blocks) as Array<keyof T & string>).map((type) =>
     z.object({
       type: z.literal(type),

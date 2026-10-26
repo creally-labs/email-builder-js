@@ -7,7 +7,7 @@
   </p>
 </div>
 
-> **creally-labs fork.** This is a security-patched fork of [usewaypoint/email-builder-js](https://github.com/usewaypoint/email-builder-js) published to npm under the `@creally-labs` scope: `@creally-labs/email-builder`, `@creally-labs/block-text`, `@creally-labs/block-button`, `@creally-labs/block-image` and `@creally-labs/block-avatar`. The other blocks and `document-core` are unchanged and come from `@usewaypoint/*`. See [Fork changes](#fork-changes) below.
+> **creally-labs fork.** This is a security-patched fork of [usewaypoint/email-builder-js](https://github.com/usewaypoint/email-builder-js) published to npm under the `@creally-labs` scope: `@creally-labs/email-builder`, `@creally-labs/document-core` and every `@creally-labs/block-*` package. The upstream `@usewaypoint/*` packages are not used. See [Fork changes](#fork-changes) below.
 
 ## Introduction
 
@@ -84,13 +84,13 @@ The email builder can output to a clean JSON or raw HTML. You can see this from 
 Install the package in your project:
 
 ```bash
-npm install --save @usewaypoint/email-builder
+npm install --save @creally-labs/email-builder
 ```
 
 Given an EmailBuilder.js configuration (the JSON output of the builder):
 
 ```javascript
-import { TReaderDocument } from '@usewaypoint/email-builder';
+import { TReaderDocument } from '@creally-labs/email-builder';
 
 const CONFIGURATION: TReaderDocument = {
   root: {
@@ -126,7 +126,7 @@ const CONFIGURATION: TReaderDocument = {
 You can render the EmailBuilder.js configuration to an HTML email string:
 
 ```javascript
-import { renderToStaticMarkup } from '@usewaypoint/email-builder';
+import { renderToStaticMarkup } from '@creally-labs/email-builder';
 
 const string = renderToStaticMarkup(CONFIGURATION, { rootBlockId: 'root' });
 ```
@@ -134,7 +134,7 @@ const string = renderToStaticMarkup(CONFIGURATION, { rootBlockId: 'root' });
 Or you can render the EmailBuilder.js configuration by using the `<Reader />` React component:
 
 ```javascript
-import { Reader } from '@usewaypoint/email-builder';
+import { Reader } from '@creally-labs/email-builder';
 
 <Reader document={CONFIGURATION} rootBlockId="root" />;
 ```
@@ -150,7 +150,7 @@ In most cases, you'll want to take the EmailBuilder.js configuration, render it 
 ### Sending through nodemailer
 
 ```javascript
-import { renderToStaticMarkup } from '@usewaypoint/email-builder';
+import { renderToStaticMarkup } from '@creally-labs/email-builder';
 import nodemailer from "nodemailer";
 
 // Replace this with your transport configuration
@@ -177,7 +177,7 @@ We'll use [Waypoint](https://www.usewaypoint.com) for this example, however, you
 ```javascript
 import axios from 'axios';
 
-import { renderToStaticMarkup } from '@usewaypoint/email-builder';
+import { renderToStaticMarkup } from '@creally-labs/email-builder';
 
 // Replace this with the JSON for your Reader document
 const CONFIGURATION: TReaderDocument = {}
@@ -243,10 +243,12 @@ Need special consultation, a one-off feature, integration, or something else for
 
 ## Fork changes
 
-Versions follow `<upstream version + 1 patch>-creally.<n>` (e.g. `@creally-labs/email-builder@0.0.10-creally.1` is upstream `0.0.9` plus the fixes below). Rendered output is unchanged for normal input.
+Versions follow `<upstream version + 1 patch>-creally.<n>` (e.g. `@creally-labs/email-builder@0.0.10-creally.2` is upstream `0.0.9` plus the changes below). Rendered output is unchanged for normal input.
+
+- **All packages** – schemas are built with zod 4 (`zod@^4.6.6` peer; zod 3 is not supported) and `react`/`react-dom` 16 to 19 are accepted as peers.
 
 - **block-text** – the unmaintained `insane` sanitizer (ReDoS, [GHSA-w455-mfq9-hf74](https://github.com/advisories/GHSA-w455-mfq9-hf74) / CVE-2020-26303) is replaced by a vendored port with linear-time tag scanners (`src/sanitizer`). Options, whitelist and output are identical to `insane@2.6.2`, including the `he` (Node) / `she.js` (browser, via the `browser` field) entity codec split. A valueless `class` attribute no longer throws.
-- **block-button / block-image / block-avatar** – URLs are checked before they reach `href`/`src` ([upstream #200](https://github.com/usewaypoint/email-builder-js/issues/200)). Links allow `http`, `https`, `mailto`, `tel`; images allow `http`, `https`, `cid` and raster `data:image/*`. Relative URLs, `#anchors`, `?query`, `//host` and template placeholders such as `{{unsubscribe_url}}` are kept as-is. Anything else (`javascript:`, `vbscript:`, `data:text/html`, …, including tab/newline/leading-control obfuscation) renders as an empty `href`/`src` (Image: the link wrapper is dropped).
+- **block-button / block-image / block-avatar** – URLs are checked before they reach `href`/`src` ([upstream #200](https://github.com/usewaypoint/email-builder-js/issues/200)). Links allow `http`, `https`, `mailto`, `tel`; images allow `http`, `https`, `cid` and raster `data:image/*`. Relative URLs, `#anchors`, `?query`, `//host` and template placeholders such as `{{unsubscribe_url}}` are kept as-is. Anything else (`javascript:`, `vbscript:`, `data:text/html`, …, including tab/newline/leading-control obfuscation) renders as an empty `href` or no `src` attribute (Image: the link wrapper is dropped).
 - **block-html** – unchanged and **raw by design**: `props.contents` is inserted with `dangerouslySetInnerHTML`. Only let trusted authors edit HTML blocks.
 - Markdown in **block-text** still allows a `style` attribute on whitelisted tags (as upstream).
 
@@ -260,5 +262,12 @@ npm install @creally-labs/email-builder
 
 ```sh
 npm ci && npm run build --workspaces && npx jest
-npm publish --workspace packages/<name> --tag latest
+npm publish --tag latest \
+  --workspace packages/document-core \
+  --workspace packages/block-avatar --workspace packages/block-button \
+  --workspace packages/block-columns-container --workspace packages/block-container \
+  --workspace packages/block-divider --workspace packages/block-heading \
+  --workspace packages/block-html --workspace packages/block-image \
+  --workspace packages/block-spacer --workspace packages/block-text \
+  --workspace packages/email-builder
 ```

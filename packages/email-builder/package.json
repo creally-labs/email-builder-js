@@ -1,15 +1,20 @@
 {
   "name": "@creally-labs/email-builder",
-  "version": "0.0.10-creally.1",
+  "version": "0.0.10-creally.2",
   "description": "React component to render email messages",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     }
   },
   "files": [
@@ -35,16 +40,16 @@
     "zod": "^4.6.6"
   },
   "dependencies": {
-    "@creally-labs/block-avatar": "^0.0.4-creally.1",
-    "@creally-labs/block-button": "^0.0.4-creally.1",
-    "@creally-labs/block-image": "^0.0.6-creally.1",
-    "@creally-labs/block-text": "^0.0.8-creally.1",
-    "@usewaypoint/block-columns-container": "^0.0.3",
-    "@usewaypoint/block-container": "^0.0.2",
-    "@usewaypoint/block-divider": "^0.0.4",
-    "@usewaypoint/block-heading": "^0.0.3",
-    "@usewaypoint/block-html": "^0.0.3",
-    "@usewaypoint/block-spacer": "^0.0.3",
-    "@usewaypoint/document-core": "^0.0.6"
+    "@creally-labs/block-avatar": "^0.0.4-creally.2",
+    "@creally-labs/block-button": "^0.0.4-creally.2",
+    "@creally-labs/block-columns-container": "^0.0.4-creally.1",
+    "@creally-labs/block-container": "^0.0.3-creally.1",
+    "@creally-labs/block-divider": "^0.0.5-creally.1",
+    "@creally-labs/block-heading": "^0.0.4-creally.1",
+    "@creally-labs/block-html": "^0.0.4-creally.1",
+    "@creally-labs/block-image": "^0.0.6-creally.2",
+    "@creally-labs/block-spacer": "^0.0.4-creally.1",
+    "@creally-labs/block-text": "^0.0.8-creally.2",
+    "@creally-labs/document-core": "^0.0.7-creally.1"
   }
 }

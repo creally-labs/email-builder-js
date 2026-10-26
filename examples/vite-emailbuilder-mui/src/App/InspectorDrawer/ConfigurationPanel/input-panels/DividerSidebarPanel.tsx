@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ZodError } from 'zod';
 
+import { DividerProps, DividerPropsDefaults, DividerPropsSchema } from '@creally-labs/block-divider';
 import { HeightOutlined } from '@mui/icons-material';
-import { DividerProps, DividerPropsDefaults, DividerPropsSchema } from '@usewaypoint/block-divider';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
 import ColorInput from './helpers/inputs/ColorInput';
