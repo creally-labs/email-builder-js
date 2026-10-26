@@ -34,7 +34,7 @@ export const ContainerPropsSchema = z.object({
 
 export type ContainerProps = {
   style?: z.infer<typeof ContainerPropsSchema>['style'];
-  children?: JSX.Element | JSX.Element[] | null;
+  children?: React.JSX.Element | React.JSX.Element[] | null;
 };
 
 function getBorder(style: ContainerProps['style']) {

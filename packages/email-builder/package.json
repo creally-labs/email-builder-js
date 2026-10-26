@@ -32,7 +32,7 @@
   "peerDependencies": {
     "react": "^16 || ^17 || ^18",
     "react-dom": "^16 || ^17 || ^18",
-    "zod": "^1 || ^2 || ^3"
+    "zod": "^4.6.6"
   },
   "dependencies": {
     "@creally-labs/block-avatar": "^0.0.4-creally.1",

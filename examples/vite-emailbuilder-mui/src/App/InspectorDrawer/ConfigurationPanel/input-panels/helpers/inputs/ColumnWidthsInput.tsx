@@ -8,18 +8,13 @@ export const DEFAULT_2_COLUMNS = [6] as [number];
 export const DEFAULT_3_COLUMNS = [4, 8] as [number, number];
 
 type TWidthValue = number | null | undefined;
-type FixedWidths = [
-  //
-  number | null | undefined,
-  number | null | undefined,
-  number | null | undefined,
-];
+type FixedWidths = [TWidthValue?, TWidthValue?, TWidthValue?];
 type ColumnsLayoutInputProps = {
   defaultValue: FixedWidths | null | undefined;
   onChange: (v: FixedWidths | null | undefined) => void;
 };
 export default function ColumnWidthsInput({ defaultValue, onChange }: ColumnsLayoutInputProps) {
-  const [currentValue, setCurrentValue] = useState<[TWidthValue, TWidthValue, TWidthValue]>(() => {
+  const [currentValue, setCurrentValue] = useState<FixedWidths>(() => {
     if (defaultValue) {
       return defaultValue;
     }
