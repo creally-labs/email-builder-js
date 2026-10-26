@@ -6,7 +6,7 @@ type Props = {
   label: string;
   rows?: number;
   placeholder?: string;
-  helperText?: string | JSX.Element;
+  helperText?: string | React.JSX.Element;
   InputProps?: InputProps;
   defaultValue: string;
   onChange: (v: string) => void;
