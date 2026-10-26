@@ -21,6 +21,7 @@ describe('renderToStaticMarkup', () => {
       },
       { rootBlockId: 'root' }
     );
-    expect(result).toEqual('<!DOCTYPE html><html><body><div></div></body></html>');
+    // React 19 emits an empty <head> that React 18 leaves out.
+    expect(result).toMatch(/^<!DOCTYPE html><html>(<head><\/head>)?<body><div><\/div><\/body><\/html>$/);
   });
 });

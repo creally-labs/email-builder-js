@@ -5,7 +5,6 @@ exports[`block-image renders with default values 1`] = `
   <div>
     <img
       alt=""
-      src=""
       style="outline: none; text-decoration: none; vertical-align: middle; display: inline-block; max-width: 100%;"
     />
   </div>

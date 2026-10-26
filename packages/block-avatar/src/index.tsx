@@ -71,7 +71,7 @@ export function Avatar({ style, props }: AvatarProps) {
     <div style={sectionStyle}>
       <img
         alt={alt}
-        src={imageUrl}
+        src={imageUrl || undefined}
         height={size}
         width={size}
         style={{

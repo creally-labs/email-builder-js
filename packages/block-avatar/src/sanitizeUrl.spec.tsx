@@ -12,7 +12,7 @@ describe('block-avatar url sanitization', () => {
   it.each(['javascript:alert(1)', 'java\nscript:alert(1)', 'data:text/html,x', 'data:image/svg+xml,<svg>'])(
     'drops unsafe image url %j',
     (imageUrl) => {
-      expect(renderToStaticMarkup(<Avatar props={{ imageUrl }} />)).toContain('src=""');
+      expect(renderToStaticMarkup(<Avatar props={{ imageUrl }} />)).not.toContain(' src=');
     }
   );
 
